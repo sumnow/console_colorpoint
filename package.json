@@ -1,12 +1,15 @@
 {
   "name": "console_colorpoint",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "git repository": "https://github.com/sumnow/console_colorpoint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sumnow/console_colorpoint"
+  },
   "author": "mydia@foxmail.com",
   "license": "ISC"
 }
