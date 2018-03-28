@@ -1,7 +1,7 @@
 {
   "name": "console_colorpoint",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.5",
+  "description": "console dev color",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
