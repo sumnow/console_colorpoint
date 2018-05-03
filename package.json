@@ -1,6 +1,6 @@
 {
   "name": "console_colorpoint",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "console dev color",
   "main": "index.js",
   "scripts": {

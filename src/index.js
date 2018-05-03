@@ -51,6 +51,13 @@ class Person  {
             return noDo
         }
     }
+    rd(...ag) {
+        if(this._x) {
+            return log('rd')(...ag)
+        } else  {
+            return noDo
+        }
+    }
     
 }
 
@@ -58,27 +65,33 @@ function noDo (...args) {
     return undefined;
 }
 
+
+function getType(obj) {
+    var type = Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1].toLowerCase();
+    if(type === 'string' && typeof obj === 'object') return 'object'; // Let "new String('')" return 'object'
+    if (obj === null) return 'null'; // PhantomJS has type "DOMWindow" for null
+    if (obj === undefined) return 'undefined'; // PhantomJS has type "DOMWindow" for undefined
+    return type;
+}
+
 function log(color) {
     return (...args) => {
         const fontSize = 16
-        console.group()
+        console.group(color)
         args.forEach((e,i) => {
-            if(e instanceof Object) {
-                if(e instanceof Array) {
-                    console.log(`%cArray:`, `font-size:${fontSize}px;color:${color};padding:0 ${fontSize}px;border-right:${fontSize}px solid ${color};border-left:${fontSize}px solid ${color}`)
-                    console.table(e)
-                } else {
-                    console.log(`%cObject:`, `font-size:${fontSize}px;color:${color};padding:0 ${fontSize}px;border-right:${fontSize}px solid ${color};border-left:${fontSize}px solid ${color}`)
-                    console.log(e)
-                }
+            const type = getType(e)
+            if(['array', 'set'].includes(type)) {
+                console.log(`%c${type}:`, `font-size:${fontSize}px;color:${color};padding:0 ${fontSize}px;border-right:${fontSize}px solid ${color};border-left:${fontSize}px solid ${color}`)
+                console.table(Array.from(e))
             } else {
-                console.log(`%c${typeof e}:`, `font-size:${fontSize}px;color:${color};padding:0 ${fontSize}px;border-right:${fontSize}px solid ${color};border-left:${fontSize}px solid ${color}`)
-                
+                console.log(`%c${type}:`, `font-size:${fontSize}px;color:${color};padding:0 ${fontSize}px;border-right:${fontSize}px solid ${color};border-left:${fontSize}px solid ${color}`)
                 console.log(e)
+            }
+            if(i < args.length - 1) {
+                console.log(`%c<=|=|=|=|=|=| Next Param |=|=|=|=|=|=>`, `font-size:${fontSize}px;color:${color};`)
             }
         })
         console.groupEnd()
-        
     }
 }
 

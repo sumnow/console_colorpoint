@@ -2,7 +2,9 @@
 
 ### version
 
-1.0.4
+1.0.7
+
+优化了类型判断，以及显示效果
 
 ### introducation
 
@@ -22,6 +24,7 @@ Log生成实例时传入任意隐式转换为 `true` 的值都会让所有 `cons
 
 ### todo
 
-Set等可遍历的支持table展示
+Set等可遍历的支持table展示 // 完成
+
 
 
