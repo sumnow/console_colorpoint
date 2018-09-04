@@ -1,70 +1,24 @@
 class Person  {
     constructor (x) {
         this._x = !x;
+        return new Proxy(this, {
+            get(target, key, receiver) {
+                target[`${key}`] = (...ag) => {
+                    return target._x ? _log(`${key}`)(...ag) : noDo
+                }
+                return Reflect.get(target, key, receiver);
+            },
+            set: function (target, key, value, receiver) {
+                console.log(`${key}`)
+                return Reflect.set(target, key, value, receiver);
+            }
+        })
     }
-    green(...ag) {
-        if (this._x) {
-            return log('green')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    purple(...ag) {
-        if (this._x) {
-            return log('purple')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    red(...ag) {
-        if (this._x) {
-            return log('red')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    yellow(...ag) {
-        if (this._x) {
-            return log('yellow')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    blue(...ag) {
-        if (this._x) {
-            return log('blue')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    orange(...ag) {
-        if (this._x) {
-            return log('orange')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    grey(...ag) {
-        if (this._x) {
-            return log('grey')(...ag)
-        } else {
-            return noDo
-        }
-    }
-    rd(...ag) {
-        if(this._x) {
-            return log('rd')(...ag)
-        } else  {
-            return noDo
-        }
-    }
-    
 }
 
 function noDo (...args) {
     return undefined;
 }
-
 
 function getType(obj) {
     var type = Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1].toLowerCase();
@@ -74,7 +28,7 @@ function getType(obj) {
     return type;
 }
 
-function log(color) {
+function _log(color) {
     return (...args) => {
         const fontSize = 16
         console.group(color)
