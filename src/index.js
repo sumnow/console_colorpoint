@@ -1,4 +1,4 @@
-class Person  {
+class ColorLog  {
     constructor (x) {
         this._x = !x;
         return new Proxy(this, {
@@ -61,4 +61,4 @@ function _log(color) {
 
 // Function.prototype._bind = _bind
 
-export default Person
+export default ColorLog
