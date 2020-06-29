@@ -1,5 +1,6 @@
 const opt = {
     fontSize: 16,
+
     //red
     s: 'salmon',
     e: 'crimson',
@@ -90,11 +91,14 @@ function _log(color) {
         const _len = args.length
         if (_len > 1) {
             console.group(color)
+        } else {
+
+            console.log(`%c▼▼▼▼▼▼ ${color} ▼▼▼▼▼▼`, `color: ${color}`)
         }
         args.forEach((e, i) => {
             const type = getType(e)
             if (_len > 1) {
-                console.log(`%c* 第${i}个参数:`, `font-size:${fontSize_small}px;color:darkred;`)
+                console.log(`%c第${i}个参数:`, `font-size:${fontSize_small}px;color:darkMagenta;`)
             }
             // console.log(`%c${e}%c<${type}>`, `font-size:${fontSize}px;color:${color};`, `font-size:${fontSize_small}px;color:${color};`)
             switch (type) {
@@ -107,7 +111,7 @@ function _log(color) {
                 // special
                 case 'regexp':
                 case 'date':
-                    console.log(`${_len > 1 ? '  ' : ''} %c${e} %c${type}`, `font-size:${fontSize}px;color:${color};`, `font-size:${fontSize_small}px;color:#fff;background: #000;padding: 2px 4px;border-radius: 2px;`)
+                    console.log(`${_len > 1 ? '  ' : ''} %c${e} %c${type}`, `line-height: 30px;font-size:${fontSize}px;color:${color};`, `font-size:${fontSize_small}px;color:#fff;background: #000;padding: 2px 4px;border-radius: 2px;`)
                     break;
                 // 
                 case 'object':
@@ -116,7 +120,7 @@ function _log(color) {
                 case 'map':
                 case 'set':
                     console.log(`${_len > 1 ? '  ' : ''}`, e)
-                    console.log(`%c${type}`, `font-size:${fontSize_small}px;color:#fff;background: #000;padding: 2px 4px;border-radius: 2px;`)
+                    // console.log(`%c${type}`, `font-size:${fontSize_small}px;color:#fff;background: #000;padding: 2px 4px;border-radius: 2px;`)
                     break;
             }
             // if (['array', 'set'].includes(type)) {
@@ -130,8 +134,12 @@ function _log(color) {
             //     console.log(`%c第${i}个参数`, `font-size:${fontSize_small}px;background:${color};color:#fff`)
             // }
         })
+
         if (_len > 1) {
             console.groupEnd(color)
+        } else {
+
+            console.log(`%c▲▲▲▲▲▲ ${color} ▲▲▲▲▲▲`, `color: ${color}`)
         }
     }
 }
