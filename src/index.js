@@ -1,6 +1,6 @@
 const opt = {
     fontSize: 16,
-
+    able: true,
     //red
     s: 'salmon',
     e: 'crimson',
@@ -50,7 +50,9 @@ class ColorLog {
         const _opt = { ...opt, ...x }
         const _arr = Object.keys(_opt)
         _arr.forEach(e => {
-            this[e] = (...ag) => _log(_opt[e])(...ag)
+            this[e] =
+                !_opt.able ? noDo :
+                    (...ag) => _log(_opt[e])(...ag)
         })
 
         // new Proxy(this, {
